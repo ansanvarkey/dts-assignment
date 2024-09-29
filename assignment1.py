@@ -11,7 +11,7 @@ Original file is located at
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import geopandas as gp
+# import geopandas as gp
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import SGDRegressor
@@ -49,7 +49,7 @@ def unique(data):
 
 # Call the function and print the number of unique cuisines
 no_unique_cuisine = unique(data['cuisine'])
-print(f"Total number of unique cuisines served by Sydney restaurants: {no_unique_cuisine}")
+#print(f"Total number of unique cuisines served by Sydney restaurants: {no_unique_cuisine}")
 
 #How many unique cuisines are served by Sydney restaurants?
 #Define the function to get the number of unique values
@@ -58,109 +58,109 @@ import matplotlib.pyplot as plt
 # Count the number of unique cuisines
 unique_cuisines = data['cuisine'].nunique()
 
-print(f"Total number of unique cuisines served by Sydney restaurants: {unique_cuisines}")
+#print(f"Total number of unique cuisines served by Sydney restaurants: {unique_cuisines}")
 
 
-# Bar plot for number of unique cuisines
-plt.figure(figsize=(6, 4))
-plt.bar(['Unique Cuisines'], [unique_cuisines], color='pink')
-plt.title('Number of Unique Cuisine Restaurants in Sydney')
-plt.ylabel('Number of Cuisines')
-plt.show()
+# # Bar plot for number of unique cuisines
+# plt.figure(figsize=(6, 4))
+# plt.bar(['Unique Cuisines'], [unique_cuisines], color='pink')
+# plt.title('Number of Unique Cuisine Restaurants in Sydney')
+# plt.ylabel('Number of Cuisines')
+# plt.show()
 
 #which suburbs (top 3) have the highest number of restaurants?
 # Group the data by 'subzone' and count the number of restaurants in each suburbs
 top3_suburbs = data['subzone'].value_counts().head(3)
-print("Top 3 suburbs with highest number of restaurants")
-print(top3_suburbs)
+# print("Top 3 suburbs with highest number of restaurants")
+# print(top3_suburbs)
 
-# Bar plot for top 3 suburbs
-plt.figure(figsize=(6, 4))
-top3_suburbs.plot(kind='bar', color='blue')
-plt.title('Top 3 Suburbs with the Highest Number of Restaurants')
-plt.xlabel('Suburb')
-plt.ylabel('Number of Restaurants')
-plt.show()
+# # Bar plot for top 3 suburbs
+# plt.figure(figsize=(6, 4))
+# top3_suburbs.plot(kind='bar', color='blue')
+# plt.title('Top 3 Suburbs with the Highest Number of Restaurants')
+# plt.xlabel('Suburb')
+# plt.ylabel('Number of Restaurants')
+# plt.show()
 
 # comparison between 'cost' and 'rating_text using '
-sns.histplot(data, x='cost', hue='rating_text', multiple='stack', bins=20, palette='viridis')
-plt.title("Relationship between Cost and Rating")
-plt.xlabel("Cost")
-plt.ylabel("Count")
-plt.show()
+# sns.histplot(data, x='cost', hue='rating_text', multiple='stack', bins=20, palette='viridis')
+# plt.title("Relationship between Cost and Rating")
+# plt.xlabel("Cost")
+# plt.ylabel("Count")
+# plt.show()
 
 """From the graph, the restaurants with excellant rating are highly expensive comparing to the poor rating restaurants. Poor ratings restuarants are rarely expensive."""
 
 #Exploratory Analysis
 #cost
 #descriptive insight
-print(data['cost'].describe())
+#print(data['cost'].describe())
 
-#histogram
-# Plotting a histogram for Cost
-plt.figure(figsize=(8, 6))
-plt.hist(data['cost'], bins=20, edgecolor='#000000', color='#00FFFF')
-plt.title('Distribution of Cost')
-plt.xlabel('Cost')
-plt.ylabel('Frequency')
-plt.show()
+# #histogram
+# # Plotting a histogram for Cost
+# plt.figure(figsize=(8, 6))
+# plt.hist(data['cost'], bins=20, edgecolor='#000000', color='#00FFFF')
+# plt.title('Distribution of Cost')
+# plt.xlabel('Cost')
+# plt.ylabel('Frequency')
+# plt.show()
 
-#Rating
-#descriptive insight
-print(data['rating_number'].describe())
-#histogram
-# Plotting a histogram for Cost
-plt.figure(figsize=(8, 6))
-plt.hist(data['rating_number'], bins=20, edgecolor='#000000', color='#00FFFF')
-plt.title('Distribution of Rating')
-plt.xlabel('Rating')
-plt.ylabel('Frequency')
-plt.show()
+# #Rating
+# #descriptive insight
+# print(data['rating_number'].describe())
+# #histogram
+# # Plotting a histogram for Cost
+# plt.figure(figsize=(8, 6))
+# plt.hist(data['rating_number'], bins=20, edgecolor='#000000', color='#00FFFF')
+# plt.title('Distribution of Rating')
+# plt.xlabel('Rating')
+# plt.ylabel('Frequency')
+# plt.show()
 
-#Type
-#descriptive insight
-print(data['type'].value_counts())
-#histogram
-# Plotting a histogram for Cost
-# Bar plot for Type
-plt.figure(figsize=(8, 6))
-data['type'].value_counts().plot(kind='bar', color='#00FFFF', edgecolor='#000000')
-plt.title('Count of Restaurant Types')
-plt.xlabel('Type of Resturants')
-plt.ylabel('Frequency')
-plt.show()
+# #Type
+# #descriptive insight
+# print(data['type'].value_counts())
+# #histogram
+# # Plotting a histogram for Cost
+# # Bar plot for Type
+# plt.figure(figsize=(8, 6))
+# data['type'].value_counts().plot(kind='bar', color='#00FFFF', edgecolor='#000000')
+# plt.title('Count of Restaurant Types')
+# plt.xlabel('Type of Resturants')
+# plt.ylabel('Frequency')
+# plt.show()
 
 """Analysis from the above graphs In the cost distribution graph, it shows the right skew which means most of the restaurants are with affordable pricing but few are a bit expensive.But in case of rating distribution most of the restaurants are avarage in rating and few o them are rated poor and expensive.In the 'Type' bar plot it says most of the restuarants are casual Dining with the frequency of near 5000. Cafe,Fast Food, Food court are next in line."""
 
 #Create a map illustrating cuisine density, where each suburb is visually
 #represented with colors indicating the number of restaurants offering a specific cuisine."
 
-geojson_path = ("data/sydney.geojson")
-sydney_map = gpd.read_file(geojson_path)
+# geojson_path = ("data/sydney.geojson")
+# sydney_map = gpd.read_file(geojson_path)
 
-# Function to plot a cuisine density map
-def show_cuisine_densitymap(data, cuisine, geojson_map):
+# # Function to plot a cuisine density map
+# def show_cuisine_densitymap(data, cuisine, geojson_map):
 
 
-    # Filter the dataset by the selected cuisine
-    data['cuisine_clean'] = data['cuisine'].apply(lambda x: [c.strip() for c in x.strip("[]").replace("'", "").split(",")])
-    cuisine_filtered = data[data['cuisine_clean'].apply(lambda x: cuisine in x)]
+#     # Filter the dataset by the selected cuisine
+#     data['cuisine_clean'] = data['cuisine'].apply(lambda x: [c.strip() for c in x.strip("[]").replace("'", "").split(",")])
+#     cuisine_filtered = data[data['cuisine_clean'].apply(lambda x: cuisine in x)]
 
-    # Count the number of restaurants per suburb that serve the selected cuisine
-    suburb_counts = cuisine_filtered['subzone'].value_counts().reset_index()
-    suburb_counts.columns = ['subzone', 'restaurant_count']
+#     # Count the number of restaurants per suburb that serve the selected cuisine
+#     suburb_counts = cuisine_filtered['subzone'].value_counts().reset_index()
+#     suburb_counts.columns = ['subzone', 'restaurant_count']
 
-    # Merge the restaurant count data with the geojson map data (spatial join)
-    geojson_map = geojson_map.merge(suburb_counts, how='left', left_on='subzone', right_on='subzone')
-    geojson_map['restaurant_count'] = geojson_map['restaurant_count'].fillna(0)
+#     # Merge the restaurant count data with the geojson map data (spatial join)
+#     geojson_map = geojson_map.merge(suburb_counts, how='left', left_on='subzone', right_on='subzone')
+#     geojson_map['restaurant_count'] = geojson_map['restaurant_count'].fillna(0)
 
-    # Plot the cuisine density map
-    plt.figure(figsize=(12, 8))
-    geojson_map.plot(column='restaurant_count', cmap='OrRd', legend=True,
-                     legend_kwds={'label': f"Number of {cuisine} Restaurants", 'orientation': "horizontal"})
-    plt.title(f"Cuisine Density Map for {cuisine} Restaurants in Sydney")
-    plt.axis('off')
-    plt.show()
+#     # Plot the cuisine density map
+#     plt.figure(figsize=(12, 8))
+#     geojson_map.plot(column='restaurant_count', cmap='OrRd', legend=True,
+#                      legend_kwds={'label': f"Number of {cuisine} Restaurants", 'orientation': "horizontal"})
+#     plt.title(f"Cuisine Density Map for {cuisine} Restaurants in Sydney")
+#     plt.axis('off')
+#     plt.show()
 
 """PART B - Predictive Model
 
@@ -172,22 +172,22 @@ I Feature Engineering
 # Selecting only the categorical columns (object or category type)
 categorical_columns = data.select_dtypes(include=['object', 'category']).columns
 
-# Print the categorical columns
-print("Categorical Variables:")
-print(categorical_columns)
+# # Print the categorical columns
+# print("Categorical Variables:")
+# print(categorical_columns)
 
 #checking for nnumberical columns
 # Select only the numerical columns (int64, float64)
 numerical_columns = data.select_dtypes(include=['int64', 'float64']).columns
 
 # Print the numerical columns
-print("Numerical Variables:")
-print(numerical_columns)
+#print("Numerical Variables:")
+#print(numerical_columns)
 
 
 # Check for missing values
 missing_values = data.isnull().sum()
-print(missing_values)
+#print(missing_values)
 
 # 1. Data Cleaning: Removing/Imputing missing or useless records
 
@@ -214,7 +214,7 @@ data['votes'].fillna(0,inplace=True)
 #filling missing values in type with 'not given'
 data['type'].fillna('not given', inplace=True)
 
-print(missing_values)
+#print(missing_values)
 
 #Proper feature encoding for each feature
 
@@ -229,7 +229,7 @@ data['color_encode'] = label_encoder.fit_transform(data['color'])
 data['cuisine_color_encode'] = label_encoder.fit_transform(data['cuisine_color'])
 
 # Display the cleaned and encoded data
-print(data.head())
+#print(data.head())
 
 """II Regression"""
 
