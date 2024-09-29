@@ -1,14 +1,14 @@
 # # Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
-# Set the working directory in the container
+#Adding working directory to a container
 WORKDIR /dts-model
 
-# Copy the current directory contents into the container at /app
+# Copying the current directory 
 COPY . /dts-model
 
-# Install any needed packages specified in requirements.txt
+# Installing  packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Run main.py when the container launches
+# Run assignment1.py while launching the container
 CMD ["python", "assignment1.py"]
